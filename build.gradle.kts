@@ -24,7 +24,7 @@ dependencies {
 
 group = "fluentd"
 version = "0.0.7"
-description = "presto-fluentd"
+description = "trino-fluentd"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
