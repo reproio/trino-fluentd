@@ -13,7 +13,7 @@ import static java.util.Objects.requireNonNull;
 public class FluentdListenerFactory implements EventListenerFactory {
 
     public String getName() {
-        return "presto-fluentd";
+        return "trino-fluentd";
     }
 
     public EventListener create(Map<String, String> map) {
