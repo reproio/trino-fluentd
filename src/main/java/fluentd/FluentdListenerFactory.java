@@ -1,8 +1,9 @@
 package fluentd;
 
-import io.prestosql.spi.eventlistener.EventListener;
-import io.prestosql.spi.eventlistener.EventListenerFactory;
+import io.trino.spi.eventlistener.EventListener;
+import io.trino.spi.eventlistener.EventListenerFactory;
 import org.komamitsu.fluency.Fluency;
+import org.komamitsu.fluency.fluentd.FluencyBuilderForFluentd;
 
 import java.io.IOException;
 import java.util.Map;
@@ -19,8 +20,9 @@ public class FluentdListenerFactory implements EventListenerFactory {
         String fluentdHost = requireNonNull(map.get("event-listener.fluentd-host"), "event-listener.fluentd-host is null");
         String fluentdPort = requireNonNull(map.get("event-listener.fluentd-port"), "event-listener.fluentd-port is null");
         String fluentdTag = requireNonNull(map.get("event-listener.fluentd-tag"), "event-listener.fluentd-tag is null");
-        try {
-            return new FluentdListener(Fluency.defaultFluency(fluentdHost, Integer.parseInt(fluentdPort)), fluentdTag);
+        try (Fluency fluency = new FluencyBuilderForFluentd()
+                .build(fluentdHost, Integer.parseInt(fluentdPort))){
+            return new FluentdListener(fluency, fluentdTag);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

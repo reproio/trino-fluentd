@@ -15,16 +15,17 @@ repositories {
 }
 
 dependencies {
-    implementation("io.prestosql:presto-spi:318")
-    implementation("io.airlift:log:0.163")
-    implementation("org.komamitsu:fluency:1.7.0")
-    implementation("com.google.guava:guava:21.0")
+    implementation("io.trino:trino-spi:426")
+    implementation("io.airlift:log:240")
+    implementation("org.komamitsu:fluency-core:2.7.0")
+    implementation("org.komamitsu:fluency-fluentd:2.7.0")
+    implementation("com.google.guava:guava:33.0.0-jre")
 }
 
 group = "fluentd"
-version = "0.0.6"
+version = "0.0.7"
 description = "presto-fluentd"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {
