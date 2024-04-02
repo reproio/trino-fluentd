@@ -1,9 +1,9 @@
 package fluentd;
 
-import io.prestosql.spi.eventlistener.EventListener;
-import io.prestosql.spi.eventlistener.QueryCompletedEvent;
-import io.prestosql.spi.eventlistener.QueryFailureInfo;
 import io.airlift.log.Logger;
+import io.trino.spi.eventlistener.EventListener;
+import io.trino.spi.eventlistener.QueryCompletedEvent;
+import io.trino.spi.eventlistener.QueryFailureInfo;
 import org.komamitsu.fluency.Fluency;
 
 import java.io.IOException;
@@ -41,7 +41,6 @@ public class FluentdListener implements EventListener {
         if(queryCompletedEvent.getStatistics().getAnalysisTime().isPresent()) {
             event.put("analysisTime", queryCompletedEvent.getStatistics().getAnalysisTime().get().toMillis());
         }
-        event.put("peakTotalNonRevocableMemoryBytes", queryCompletedEvent.getStatistics().getPeakTotalNonRevocableMemoryBytes());
         event.put("peakUserMemoryBytes", queryCompletedEvent.getStatistics().getPeakUserMemoryBytes());
         event.put("totalBytes", queryCompletedEvent.getStatistics().getTotalBytes());
         event.put("totalRows", queryCompletedEvent.getStatistics().getTotalRows());

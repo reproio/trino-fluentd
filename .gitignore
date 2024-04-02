@@ -1,3 +1,6 @@
 target/
 .idea/
 presto-fluentd.iml
+.gradle/
+build/
+

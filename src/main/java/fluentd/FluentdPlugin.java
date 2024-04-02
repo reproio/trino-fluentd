@@ -1,8 +1,9 @@
 package fluentd;
 
-import io.prestosql.spi.Plugin;
-import io.prestosql.spi.eventlistener.EventListenerFactory;
+
 import com.google.common.collect.ImmutableList;
+import io.trino.spi.Plugin;
+import io.trino.spi.eventlistener.EventListenerFactory;
 
 public class FluentdPlugin implements Plugin {
 
